@@ -214,8 +214,8 @@ This lab was performed in an **isolated, host-only network** with no external co
 **Evans Davou**
 Cybersecurity Student | Purple Team Enthusiast
 
-- GitHub: [@yourhandle](https://github.com/yourhandle)
-- LinkedIn: Evans Davou(https://linkedin.com/in/yourhandle)
+- GitHub: [@flames778](https://github.com/flames778)
+- LinkedIn: [Evans Davou](https://www.linkedin.com/in/evansdavou)
 
 ---
 
