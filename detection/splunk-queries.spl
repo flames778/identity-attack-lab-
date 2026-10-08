@@ -1,0 +1,59 @@
+═══════════════════════════════════════════════════════════════════════════════
+  SPLUNK DETECTION QUERIES — Operation Silent SSH
+  Source: /var/log/auth.log ingested via Universal Forwarder
+═══════════════════════════════════════════════════════════════════════════════
+
+─── Q1: All successful SSH logins ───────────────────────────────────────────
+
+index=linux sourcetype=linux_secure "Accepted password"
+| rex "for (?<user>\S+) from (?<src_ip>\S+) port (?<port>\d+)"
+| table _time, host, user, src_ip, port
+| sort -_time
+
+─── Q2: Logins from non-standard source IPs ─────────────────────────────────
+
+index=linux sourcetype=linux_secure "Accepted password"
+| rex "for (?<user>\S+) from (?<src_ip>\S+)"
+| where src_ip NOT IN ("10.0.0.0/8", "172.16.0.0/12", "192.168.1.0/24")
+| table _time, host, user, src_ip
+
+─── Q3: Failed login burst (brute force detection) ──────────────────────────
+
+index=linux sourcetype=linux_secure "Failed password"
+| rex "from (?<src_ip>\S+)"
+| bucket _time span=5m
+| stats count by _time, src_ip
+| where count > 5
+
+─── Q4: Login outside business hours (06:00–22:00) ──────────────────────────
+
+index=linux sourcetype=linux_secure "Accepted password"
+| eval hour = strftime(_time, "%H")
+| where hour < 6 OR hour > 22
+| rex "for (?<user>\S+) from (?<src_ip>\S+)"
+| table _time, host, user, src_ip
+
+─── Q5: First-time login from new IP (UEBA-style) ───────────────────────────
+
+index=linux sourcetype=linux_secure "Accepted password"
+| rex "for (?<user>\S+) from (?<src_ip>\S+)"
+| stats earliest(_time) as first_seen, latest(_time) as last_seen,
+        dc(src_ip) as ip_count, values(src_ip) as ips by user
+| where ip_count > 3
+
+─── Q6: Auditd — writes to sensitive directories ────────────────────────────
+
+index=linux sourcetype=linux_audit key="victim_home"
+| table _time, host, comm, exe, auid, uid, ses, name
+| sort -_time
+
+─── Q7: Auditd — session correlation ────────────────────────────────────────
+
+index=linux sourcetype=linux_audit
+| where ses > 0
+| stats count, values(comm) as processes, values(name) as files by ses, auid
+| sort -_time
+
+═══════════════════════════════════════════════════════════════════════════════
+  End of queries
+═══════════════════════════════════════════════════════════════════════════════

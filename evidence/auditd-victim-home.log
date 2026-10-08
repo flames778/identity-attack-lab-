@@ -1,0 +1,7 @@
+# Source: sudo ausearch -k victim_home -ts today
+# Captured: 2026-10-08
+
+type=SYSCALL msg=audit(1791471712.629:664): arch=c000003e syscall=257 success=yes exit=3 a0=ffffff9c a1=7f1234 a2=0 a3=0 items=1 ppid=49263 pid=49264 auid=1003 uid=1003 gid=1003 euid=1003 suid=1003 fsuid=1003 egid=1003 sgid=1003 fsgid=1003 tty=pts0 ses=5 comm="sshd-session" exe="/usr/sbin/sshd" key="victim_home"
+type=PATH msg=audit(1791471712.629:664): item=0 name="/home/victim" inode=131073 dev=08:01 mode=040750 ouid=1003 ogid=1003 rdev=00:00 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=SYSCALL msg=audit(1791471724.001:701): arch=c000003e syscall=257 success=yes exit=4 a0=ffffff9c a1=7f5678 a2=0 a3=0 items=1 ppid=49264 pid=49290 auid=1003 uid=1003 gid=1003 euid=1003 suid=1003 fsuid=1003 egid=1003 sgid=1003 fsgid=1003 tty=pts0 ses=5 comm="bash" exe="/usr/bin/bash" key="victim_home"
+type=PATH msg=audit(1791471724.001:701): item=0 name="/home/victim/.bash_history" inode=131092 dev=08:01 mode=0100600 ouid=1003 ogid=1003 rdev=00:00 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0

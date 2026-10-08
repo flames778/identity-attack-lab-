@@ -1,0 +1,7 @@
+# Source: last -a on Ubuntu (bby)
+# Captured: 2026-10-08
+
+victim   pts/0        Thu Oct  8 16:01 - 16:02  (00:00)   192.168.56.10
+victim   pts/0        Thu Oct  8 15:32 - 15:32  (00:00)   192.168.56.1
+
+wtmp begins Thu Oct  8 14:27:00 2026

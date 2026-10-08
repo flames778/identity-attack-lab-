@@ -1,0 +1,5 @@
+# Source: /var/log/auth.log on Ubuntu (bby)
+# Captured: 2026-10-08
+
+2026-10-08T16:01:49.190933+00:00 bby sshd-session[49264]: Accepted password for victim from 192.168.56.10 port 40850 ssh2
+2026-10-08T16:02:03.000000+00:00 bby sshd-session[49264]: Disconnected from user victim 192.168.56.10 port 40850

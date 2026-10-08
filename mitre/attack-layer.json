@@ -1,0 +1,159 @@
+{
+  "name": "Operation Silent SSH",
+  "versions": {
+    "attack": "14",
+    "navigator": "4.9.1",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Purple team lab: phishing \u2192 credential theft \u2192 SSH account takeover.",
+  "filters": {
+    "platforms": [
+      "Linux"
+    ]
+  },
+  "sorting": 0,
+  "layout": {
+    "layout": "side",
+    "showID": true,
+    "showName": true,
+    "expandedSubtechniques": "annotated"
+  },
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1595",
+      "tactic": "reconnaissance",
+      "color": "#f4b942",
+      "comment": "Active scanning to identify target host and open SSH port",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1583.005",
+      "tactic": "resource-development",
+      "color": "#f4b942",
+      "comment": "Kali Linux VM used as attacker infrastructure",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1566.002",
+      "tactic": "initial-access",
+      "color": "#e8493e",
+      "comment": "Fake SSO login page served via Flask on port 80",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1056.003",
+      "tactic": "credential-access",
+      "color": "#e8493e",
+      "comment": "Credentials captured via HTTP POST; written to creds.txt",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1078.003",
+      "tactic": "initial-access",
+      "color": "#e8493e",
+      "comment": "Stolen credentials used for SSH authentication as victim user",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1021.004",
+      "tactic": "lateral-movement",
+      "color": "#e8493e",
+      "comment": "SSH used as remote access mechanism with stolen password",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1033",
+      "tactic": "discovery",
+      "color": "#4caf7d",
+      "comment": "whoami, id, hostname executed post-compromise",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1087.001",
+      "tactic": "discovery",
+      "color": "#4caf7d",
+      "comment": "cat /etc/passwd | head to enumerate local accounts",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1005",
+      "tactic": "collection",
+      "color": "#4caf7d",
+      "comment": "ls -la /home/victim to enumerate files on local system",
+      "enabled": true,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "T1070.003",
+      "tactic": "defense-evasion",
+      "color": "#aaaaaa",
+      "comment": "NOT used \u2014 attacker did NOT clear .bash_history",
+      "enabled": false,
+      "metadata": [],
+      "links": [],
+      "showSubtechniques": false
+    }
+  ],
+  "gradient": {
+    "colors": [
+      "#ff6666",
+      "#ffe766",
+      "#8ec843"
+    ],
+    "minValue": 0,
+    "maxValue": 100
+  },
+  "legendItems": [
+    {
+      "label": "Attacker action (executed)",
+      "color": "#e8493e"
+    },
+    {
+      "label": "Discovery phase",
+      "color": "#4caf7d"
+    },
+    {
+      "label": "Recon / Resource Dev",
+      "color": "#f4b942"
+    },
+    {
+      "label": "NOT used",
+      "color": "#aaaaaa"
+    }
+  ],
+  "metadata": [],
+  "links": [],
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#1a1a2e",
+  "selectTechniquesAcrossTactics": true,
+  "selectSubtechniquesWithParent": false,
+  "selectVisibleTechniques": false
+}

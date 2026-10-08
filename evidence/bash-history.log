@@ -1,0 +1,11 @@
+# Source: sudo cat /home/victim/.bash_history on Ubuntu (bby)
+# Captured: 2026-10-08
+# Session: ses=5, auid=1003 (victim), from 192.168.56.10 (Kali)
+# These commands were run by the attacker after SSH login at 16:01:49
+
+whoami
+id
+hostname
+ls -la /home/victim
+cat /etc/passwd | head
+exit
